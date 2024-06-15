@@ -7,6 +7,7 @@ function checkNewPresenceForValorant(newPresence) {
     if (guild.name != '摳丁人') return;
     const member = guild.members.cache.get(newPresence.user.id);
     const activity = newPresence.activities[0];
+    if (!activity) return ;
     if (member.id == '978557921786986517' && activity.name === "VALORANT") {
         client.channels.fetch("982238904683986954").then((channel) => {
             // channel.send(`<@${member.id}> 欸欸欸 你幹嘛你幹嘛`);
