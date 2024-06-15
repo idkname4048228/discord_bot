@@ -1,0 +1,7 @@
+node_modules/
+__pycache__/
+k7env/
+*.tar.xz
+*.jpg
+*.json
+*.service
