@@ -4,7 +4,7 @@ from PIL import Image
 from supervision import Detections, BoundingBoxAnnotator, LabelAnnotator
 import brain
 
-PATH = "/home/user/bot-test/function/tools/poker_detection"
+PATH = "/home/user/bot-test/functions/tools/poker_detection"
 
 try:
     if os.path.exists(f'{PATH}/result.jpg'):
@@ -15,10 +15,10 @@ except FileNotFoundError:
 
 # 打開並保存圖像
 try:
-    if os.path.exists("f{PATH}/image.png"):
-        im = Image.open("f{PATH}/image.png")
-        os.remove(f'{PATH}/image.png')
-        im.save("f{PATH}/image.jpg")
+    if os.path.exists(f"{PATH}/image.png"):
+        im = Image.open(f"{PATH}/image.png")
+        os.remove(f"{PATH}/image.png")
+        im.save(f"{PATH}/image.jpg")
 except FileNotFoundError:
     print("Error: The file 'image.png' was not found.")
     exit(1)
@@ -30,7 +30,7 @@ CLIENT = InferenceHTTPClient(
 )
 # 推斷
 try:
-    result = CLIENT.infer(f'{PATH}/image.jpg', model_id="cards-and-such/1")
+    result = CLIENT.infer(f"{PATH}/image.jpg", model_id="cards-and-such/1")
 except Exception as e:
     print(f"Error during inference: {e}")
     exit(1)
@@ -62,8 +62,8 @@ except Exception as e:
 
 # 保存標註後的圖像
 try:
-    os.remove("f{PATH}/image.jpg")
-    annotated_image.save("f{PATH}/result.jpg")
+    os.remove(f"{PATH}/image.jpg")
+    annotated_image.save(f"{PATH}/result.jpg")
 except Exception as e:
     print(f"Error saving the annotated image: {e}")
     exit(1)

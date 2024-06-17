@@ -3,7 +3,7 @@ const request = require(`request`);
 const { exec } = require('child_process');
 
 const pythonPath = "/home/user/bot-test/k7env/bin/python3"
-const directoryPath = "/home/user/bot-test/function/tools/poker_detection"
+const directoryPath = "/home/user/bot-test/functions/tools/poker_detection"
 
 /**
  * @param {import('discord.js').Message} msg - The discord message object.
@@ -14,7 +14,9 @@ async function startDetection(msg) {
     const attachment = msg.attachments.first();
     if (!attachment.contentType.includes('png')) return; // download only png (customize this)
 
-    const downloadSuccess = await download(attachment.url);
+    const downloadSuccess = await download(attachment.url).catch((err) => {
+        return false;
+    });
     if (!downloadSuccess) return;
 
     processImage(msg); // Assuming you meant `processImage` instead of `processImge`
@@ -67,8 +69,10 @@ function runPython(msg) {
         for (let i = 0; i < length; i += 1500) {
             msg.channel.send(stdout.slice(i, i + 1500)); //將 stdout 送到頻道
         }
-        msg.channel.send(`stderr: ${stderr}`);
-        console.error(`stderr: ${stderr}`);
+        if (stderr) {
+            msg.channel.send(`stderr: ${stderr}`);
+            console.error(`stderr: ${stderr}`);
+        }
     });
 }
 
