@@ -2,7 +2,7 @@
  * @param {import('discord.js').Presence} newPresence - The discord presence object.
  */
 
-function checkNewPresenceForValorant(newPresence) {
+function checkNewPresenceForValorant(client, newPresence) {
     const guild = newPresence.guild;
     if (guild.name != '摳丁人') return;
     const member = guild.members.cache.get(newPresence.user.id);
