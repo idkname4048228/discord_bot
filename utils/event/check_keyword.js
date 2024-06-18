@@ -1,6 +1,6 @@
 const startDetection = require("../tools/poker_detection/trigger");
 const getArticle = require("../tools/copy_articles_getter");
-const gemini = require("../../core/gemini");
+const gemini = require("../../gemini/ai");
 
 /**
  * @param {import('discord.js').Message} msg - The discord message object.
