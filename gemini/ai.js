@@ -1,11 +1,19 @@
 const { GEMINI } = require("../auth.json");
+const declarations = require("./functions/declaration_collections")
+const functions = require("./functions/function_trigger")
 const { GoogleGenerativeAI, HarmCategory, HarmBlockThreshold } = require("@google/generative-ai");
 
 // Access your API key as an environment variable (see "Set up your API key" above)
 const genAI = new GoogleGenerativeAI(GEMINI);
 
 // Use a model that supports function calling, like a Gemini 1.5 model
-const model = genAI.getGenerativeModel({ model: "gemini-1.5-flash" });
+const model = genAI.getGenerativeModel({
+    model: "gemini-1.5-flash",
+
+    tools: {
+        functionDeclarations: declarations,
+    },
+});
 
 const generationConfig = {
     temperature: 1,
@@ -105,11 +113,13 @@ async function GeminiAnswer(chatModel, id, msg) {
     const response = result.response;
 
     let functionCalls = result.response.functionCalls();
+    console.log("==================");
     console.log(functionCalls);
+    console.log("==================");
     if (functionCalls) {
         try {
             const call = functionCalls[0];
-            const apiResponse = await functions[call.name](call.args);
+            const apiResponse = await functions[call.name](msg, call.args);
         } catch (e) {
             console.log(e)
         }
@@ -121,4 +131,4 @@ async function GeminiAnswer(chatModel, id, msg) {
 
 
 
-module.exports = { getInitModel, check, GeminiAnswer}
+module.exports = { getInitModel, check, GeminiAnswer }
