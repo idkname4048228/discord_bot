@@ -1,5 +1,3 @@
-const { SlashCommandRoleOption } = require('discord.js');
-
 const setAlarmClockDeclaration = {
 	name: "setAlarmClock",
 	parameters: {
@@ -23,10 +21,6 @@ const setAlarmClockDeclaration = {
  * @param {import('discord.js').Message} msg - The discord message object.
  */
 function setAlarmClock(msg, {seconds, text}) {
-	console.log(msg);
-	console.log(seconds);
-	console.log(text);
-
 	setTimeout(() => {
 		console.log("im trying")
 		msg.channel.send(text);
@@ -34,4 +28,17 @@ function setAlarmClock(msg, {seconds, text}) {
 	return { succeed: true };
 }
 
-module.exports = {setAlarmClockDeclaration, setAlarmClock}
+const getCurrentTimestampDeclaration = {
+	name: "getCurrentTimestamp",
+	parameters: {
+		type: "OBJECT",
+		description: "Get current timestamp by using javascript Date.now().",
+	},
+};
+
+function getCurrentTimestamp(msg) {
+	console.log(Date.now());
+	return Date.now();
+}
+
+module.exports = {setAlarmClockDeclaration, setAlarmClock, getCurrentTimestampDeclaration, getCurrentTimestamp}

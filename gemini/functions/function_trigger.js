@@ -1,7 +1,8 @@
-const { setAlarmClock } = require("./time/clock")
+const { setAlarmClock, getCurrentTimestamp } = require("./time/clock")
 
 const functions = {
-    setAlarmClock: setAlarmClock
+    setAlarmClock: setAlarmClock,
+    getCurrentTimestamp: getCurrentTimestamp
 }
 
 module.exports = functions

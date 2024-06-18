@@ -113,9 +113,6 @@ async function GeminiAnswer(chatModel, id, msg) {
     const response = result.response;
 
     let functionCalls = result.response.functionCalls();
-    console.log("==================");
-    console.log(functionCalls);
-    console.log("==================");
     if (functionCalls) {
         try {
             const call = functionCalls[0];
@@ -126,7 +123,7 @@ async function GeminiAnswer(chatModel, id, msg) {
     }
 
     await check(chatModel);
-    return response.text();
+    return response.text() || apiResponse.text();
 }
 
 
