@@ -1,9 +1,9 @@
 const { Client, GatewayIntentBits, Events } = require('discord.js');
 const { DISCORD } = require('./auth.json');
-const scheduleReminder = require('./functions/cycle/reminder');
-const checkNewPresenceForValorant = require('./functions/event/check_presence');
-const checkContentForKeyword = require('./functions/event/check_keyword');
-const gemini = require('./core/gemini');
+const scheduleReminder = require('./utils/alarm/reminder');
+const checkNewPresenceForValorant = require('./utils/event/check_presence');
+const checkContentForKeyword = require('./utils/event/check_keyword');
+const gemini = require('./gemini/ai');
 
 function printMessageDetail(msg) {
     console.log(

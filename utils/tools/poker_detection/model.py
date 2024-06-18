@@ -4,7 +4,7 @@ from PIL import Image
 from supervision import Detections, BoundingBoxAnnotator, LabelAnnotator
 import brain
 
-PATH = "/home/user/bot-test/functions/tools/poker_detection"
+PATH = "/home/user/bot-test/utils/tools/poker_detection"
 
 try:
     if os.path.exists(f'{PATH}/result.jpg'):

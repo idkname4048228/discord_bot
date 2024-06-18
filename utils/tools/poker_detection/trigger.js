@@ -3,7 +3,7 @@ const request = require(`request`);
 const { exec } = require('child_process');
 
 const pythonPath = "/home/user/bot-test/k7env/bin/python3"
-const directoryPath = "/home/user/bot-test/functions/tools/poker_detection"
+const directoryPath = "/home/user/bot-test/utils/tools/poker_detection"
 
 /**
  * @param {import('discord.js').Message} msg - The discord message object.
