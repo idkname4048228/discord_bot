@@ -1,6 +1,7 @@
 const { Client, GatewayIntentBits, Events } = require('discord.js');
 const { DISCORD } = require('./auth.json');
 const scheduleReminder = require('./utils/alarm/reminder');
+const leetcodeReminder = require('./utils/alarm/leetcode_daily');
 const checkNewPresenceForValorant = require('./utils/event/check_presence');
 const checkContentForKeyword = require('./utils/event/check_keyword');
 const gemini = require('./gemini/ai');
@@ -29,7 +30,9 @@ let geminiModel = null;
 
 client.on("ready", () => {
     console.log(`[BOT][INFO] Logged in as ${client.user.tag}.\n`);
-    scheduleReminder(client);
+    // scheduleReminder(client);
+    leetcodeReminder(client);
+
 
     geminiModel = gemini.getInitModel();
     ID = client.user.id;
