@@ -48,7 +48,7 @@ client.on(Events.MessageCreate, async (msg) => {
 
 
 client.on("presenceUpdate", (oldPresence, newPresence) => {
-    checkNewPresenceForValorant(client, newPresence);
+    // checkNewPresenceForValorant(client, newPresence);
 });
 
 client.login(DISCORD);
