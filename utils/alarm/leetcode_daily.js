@@ -3,9 +3,20 @@ const userAgent = require('user-agents');
 const CronJob = require('cron').CronJob;
 
 async function leetcodeReminder(client) {
-    const reminder = new CronJob('0 0 8 * * *', async () => { // 每天 13:05:00 执行
+    const reminder = new CronJob('0 0 8 * * *', async () => { // 每天 8:00:00 执行
+        const now = new Date();
+
+        const options = {
+        timeZone: 'Asia/Taipei',
+        year: 'numeric',
+        month: 'numeric',
+        day: 'numeric'
+        };
+
+        const formatter = new Intl.DateTimeFormat('zh-TW', options);
+        const formattedDate = formatter.format(now);
+
         const channel = client.channels.cache.get('982238904683986954'); // now in 摳丁人 "978540757591924810" for general
-        console.log("爬ing");
         if (channel) {
             try {
                 let dailyProblemLink = 'undefined';
@@ -34,7 +45,7 @@ async function leetcodeReminder(client) {
                 await browser.close();
 
                 // 发送消息到 Discord
-                await channel.send(`@everyone ${dailyProblemLink}`);
+                await channel.send(`@everyone [${formattedDate} Leetcode Daily](${dailyProblemLink})`);
             } catch (error) {
                 console.error('爬蟲錯誤：', error);
             }
